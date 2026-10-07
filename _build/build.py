@@ -144,7 +144,7 @@ def footer():
   <a class="btn red" href="/#request">Free inspection</a>
 </nav>
 <script>
-(function(){{var b=document.querySelector('.board');if(!b)return;var li=[].slice.call(b.querySelectorAll('li'));
+(function(){{var b=document.querySelector('.day');if(!b)return;var li=[].slice.call(b.querySelectorAll('li'));
 if(matchMedia('(prefers-reduced-motion: reduce)').matches){{li.forEach(function(l){{l.classList.add('on')}});return}}
 li.forEach(function(l,i){{setTimeout(function(){{l.classList.add('on')}},350+i*420)}})}})();
 </script>
@@ -153,19 +153,16 @@ li.forEach(function(l,i){{setTimeout(function(){{l.classList.add('on')}},350+i*4
 '''
 
 def board(unit, model, note):
-    steps = [("done","Picked up at your yard","Free pickup, so no driver loses the morning","7:30 AM"),
-             ("done","Inspected, estimate texted","Every line item, before any work starts","9:05 AM"),
-             ("done","Approved by text","Under your pre-approval limit, we just start","9:12 AM"),
-             ("now","In a priority bay","Fleet vehicles go to the front of the line","9:30 AM"),
-             ("","Back at your yard","One line on your monthly Net 30 invoice","2:45 PM")]
-    rows = "".join(f'<li class="{c}"><span class="dot">{I["check"].replace("currentColor","#fff")}</span><span><strong>{a}</strong><small>{b}</small></span><time>{t}</time></li>' for c,a,b,t in steps)
-    return f'''<div>
-        <div class="board" role="img" aria-label="Example: how a fleet vehicle moves through MPB in one day, from pickup at 7:30 AM to back at your yard at 2:45 PM.">
-          <header><div><b>{esc(unit)}</b><span>{esc(model)}</span></div><span class="plate">{esc(note)}</span></header>
-          <ol>{rows}</ol>
-          <footer>Back on the road the same day <span>Brake job example</span></footer>
-        </div>
-        <p class="board-note">Example of a routine brake job. Bigger repairs take longer; you always see the estimate first.</p>
+    steps = [("done","Picked up at your yard","Free pickup, no driver lost","7:30"),
+             ("done","Estimate texted","Every line item, before any work","9:05"),
+             ("done","Approved by text","Under your limit, we just start","9:12"),
+             ("now","In a priority bay","Fleet vehicles go first","9:30"),
+             ("","Back at your yard","One line on your Net 30 invoice","2:45")]
+    rows = "".join(f'<li class="{c}"><time>{t}</time><span><strong>{a}</strong><small>{b}</small></span></li>' for c,a,b,t in steps)
+    return f'''<div class="day" role="img" aria-label="Example: one fleet vehicle's day at MPB, picked up at 7:30 AM and back at your yard at 2:45 PM.">
+        <div class="day-head"><b>A day in the shop: {esc(unit)}, {esc(model)}</b><span>{esc(note)}</span></div>
+        <ol>{rows}</ol>
+        <p class="day-note">Example of a routine brake job. Bigger repairs take longer; you always see the estimate first.</p>
       </div>'''
 
 def inspection_form(industry=""):
@@ -293,16 +290,14 @@ def home():
 <main id="top">
   <div class="hero">
     <div class="wrap">
-      <div>
-        <p class="crumbs">Fleet service from MPB Auto Repair &amp; Body Collision, Rancho Cordova</p>
-        <h1>A parked van makes $0.</h1>
-        <p class="lede">Every day a work vehicle waits at the shop, your crew loses jobs. Fleet vehicles go to the front of our line, with mechanical and body work under one roof.</p>
-        <div class="cta">
-          <a class="btn red" href="#request">Request a free fleet inspection</a>
-          <a class="btn line" href="tel:{TEL}">{I["phone"]}{PHONE}</a>
-        </div>
+      <p class="crumbs">Fleet service from MPB Auto Repair &amp; Body Collision, Rancho Cordova</p>
+      <h1>A parked van makes <em>$0.</em></h1>
+      <p class="lede">Every day a work vehicle waits at the shop, your crew loses jobs. Fleet vehicles go to the front of our line, with mechanical and body work under one roof.</p>
+      <div class="cta">
+        <a class="btn red" href="#request">Request a free fleet inspection</a>
+        <a class="btn line" href="tel:{TEL}">{I["phone"]}{PHONE}</a>
       </div>
-      {board("Van 07","Ford Transit 250 service van","Fleet")}
+      {board("Van 07","Ford Transit","Brake job, same day")}
     </div>
   </div>
   <div class="wrap facts">
@@ -411,16 +406,14 @@ def industry_page(i):
     u = i["unit"]
     return head(title, desc, path, extra) + f'''
 <main id="top">
-  <div class="hero">
+  <div class="hero page-hero">
     <div class="wrap">
-      <div>
-        <p class="crumbs"><a href="/">MPB Fleet Services</a> / {esc(i['name'])} fleets</p>
-        <h1 style="font-size:clamp(2.8rem,8vw,6rem)">{esc(i['h1'])}</h1>
-        <p class="lede">{esc(i['sub'])}</p>
-        <div class="cta">
-          <a class="btn red" href="#request">Request a free fleet inspection</a>
-          <a class="btn line" href="tel:{TEL}">{I["phone"]}{PHONE}</a>
-        </div>
+      <p class="crumbs"><a href="/">MPB Fleet Services</a> / {esc(i['name'])} fleets</p>
+      <h1>{esc(i['h1'])}</h1>
+      <p class="lede">{esc(i['sub'])}</p>
+      <div class="cta">
+        <a class="btn red" href="#request">Request a free fleet inspection</a>
+        <a class="btn line" href="tel:{TEL}">{I["phone"]}{PHONE}</a>
       </div>
       {board(u[0], u[1], u[2])}
     </div>
@@ -451,13 +444,11 @@ def credit_page():
     desc = "Apply for Net 30 fleet billing up to $5,000 at MPB Auto Repair & Body Collision in Rancho Cordova. One monthly invoice for your whole fleet."
     return head(title, desc, path) + f'''
 <main id="top">
-  <div class="hero">
-    <div class="wrap" style="grid-template-columns:1fr">
-      <div>
-        <p class="crumbs"><a href="/">MPB Fleet Services</a> / Net 30 application</p>
-        <h1 style="font-size:clamp(2.8rem,8vw,6rem)">Net 30, up to $5,000.</h1>
-        <p class="lede" style="max-width:52ch">Fix it now, pay in 30 days. This takes about 5 minutes. We'll review it and call you, usually within two business days.</p>
-      </div>
+  <div class="hero page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/">MPB Fleet Services</a> / Net 30 application</p>
+      <h1>Net 30, up to $5,000.</h1>
+      <p class="lede" style="margin-bottom:0">Fix it now, pay in 30 days. This takes about 5 minutes. We'll review it and call you, usually within two business days.</p>
     </div>
   </div>
 
