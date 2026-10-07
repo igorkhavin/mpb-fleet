@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23111'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='26' fill='%23c8102e' text-anchor='middle'%3EMPB%3C/text%3E%3C/svg%3E">
-<title>MPB Fleet Services</title>
+<title>MPB Fleet Services · Fleet Repair in Rancho Cordova, CA</title>
 <meta name="description" content="Fleet maintenance, mechanical, tires, collision and towing for local businesses in Rancho Cordova. Free fleet inspection, priority service and Net 30 billing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Public+Sans:wght@400;500;600;800&display=swap">
@@ -65,7 +65,7 @@ h3{font-size:1.35rem;letter-spacing:.02em}
 .offer .txt strong{display:block;font-family:var(--display);font-weight:600;font-size:1.6rem;text-transform:uppercase;line-height:1.1}
 .offer .btn{background:#fff;color:var(--red)}
 
-section{padding-block:80px}
+section{padding-block:80px;scroll-margin-top:64px}
 .head{display:flex;flex-direction:column;gap:12px;margin-bottom:36px;max-width:60ch}
 .head p{margin:0;color:var(--muted)}
 
@@ -126,11 +126,43 @@ ol.steps{padding:0;margin:0}
 .hours{font-variant-numeric:tabular-nums}
 @media (max-width:860px){.contact .wrap{grid-template-columns:1fr;gap:36px}}
 
+/* request form */
+.request{background:var(--soft)}
+.request .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:start}
+.request ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.request li{border-left:3px solid var(--red);padding-left:14px}
+form.card{background:var(--paper);border:2px solid var(--ink);border-radius:8px;padding:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 18px}
+form.card .full{grid-column:1/-1}
+form.card label{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:.9rem;min-width:0}
+form.card label small{font-weight:500;color:var(--muted)}
+form.card input,form.card select,form.card textarea{font:500 1rem var(--body);color:var(--ink);background:#fff;border:1.5px solid #bbb;border-radius:6px;padding:11px 12px;min-height:46px;width:100%}
+form.card textarea{min-height:96px;resize:vertical}
+form.card input:focus,form.card select:focus,form.card textarea:focus{outline:3px solid var(--red);outline-offset:1px;border-color:var(--ink)}
+form.card .btn{width:100%}
+form.card .note{font-size:.82rem;color:var(--muted);margin:0}
+.hp{position:absolute;left:-9999px}
+@media (max-width:860px){.request .wrap{grid-template-columns:1fr;gap:32px}}
+@media (max-width:520px){form.card{grid-template-columns:1fr;padding:20px}}
+
+/* service area */
+.area .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:40px;align-items:center}
+.area .map{aspect-ratio:4/3;width:100%;border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--soft)}
+.area iframe{width:100%;height:100%;border:0;display:block}
+.cities{columns:2;column-gap:24px;margin:20px 0 0;padding:0;list-style:none}
+.cities li{padding:7px 0;border-bottom:1px solid var(--line);font-weight:600;break-inside:avoid}
+@media (max-width:860px){.area .wrap{grid-template-columns:1fr}}
+
 footer{background:#000;color:#9a9a9a;font-size:.82rem;padding-block:22px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </style>
+<link rel="canonical" href="https://mpbfleet.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mpbfleet.com/">
 <meta property="og:title" content="MPB Fleet Services · Rancho Cordova">
 <meta property="og:description" content="Free inspection of your whole fleet. Priority service, free pickup and drop-off, Net 30 billing.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AutoRepair","name":"MPB Fleet Services","alternateName":"MPB Auto Repair and Body Collision","url":"https://mpbfleet.com/","telephone":"+1-916-533-1695","email":"mpbfleet@gmail.com","address":{"@type":"PostalAddress","streetAddress":"11432 Elks Cir, Ste B","addressLocality":"Rancho Cordova","addressRegion":"CA","postalCode":"95742","addressCountry":"US"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"18:00"}],"areaServed":["Rancho Cordova","Gold River","Mather","Sacramento","Folsom","Citrus Heights","Fair Oaks","Carmichael","Elk Grove","El Dorado Hills"],"sameAs":["https://mpbautorepair.com"]}
+</script>
 </head>
 <body>
 <header class="top">
@@ -140,8 +172,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a href="#services">Services</a>
       <a href="#benefits">Fleet benefits</a>
       <a href="#how">How it works</a>
+      <a href="#area">Service area</a>
       <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <a href="#request">Free inspection</a>
     </nav>
     <a class="btn red" href="tel:+19165331695">Call<span class="num">&nbsp;(916) 533-1695</span></a>
   </div>
@@ -155,7 +188,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <h1 style="margin-top:14px"><span style="white-space:nowrap">A parked van</span><br>makes <em>$0.</em></h1>
         <p>Every day your vehicle waits at the shop, your crew loses jobs. We get fleet vehicles back on the road first.</p>
         <div class="cta">
-          <a class="btn red" href="#contact">Book a free fleet inspection</a>
+          <a class="btn red" href="#request">Book a free fleet inspection</a>
           <a class="btn ghost" href="#benefits">See fleet benefits</a>
         </div>
       </div>
@@ -172,7 +205,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="wrap">
       <div class="big">FREE</div>
       <div class="txt"><strong>Inspection of your whole fleet</strong>Every vehicle, a written report on each, plus free diagnostics. No obligation.</div>
-      <a class="btn" href="#contact">Schedule it</a>
+      <a class="btn" href="#request">Schedule it</a>
     </div>
   </div>
 
@@ -258,6 +291,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
   </section>
 
+  <section id="area" class="area">
+    <div class="wrap">
+      <div>
+        <div class="head" style="margin-bottom:0">
+          <div class="eyebrow">Service area</div>
+          <h2>Based in Rancho Cordova</h2>
+          <p>Right off Sunrise Blvd and Highway 50. Fleet accounts get free pickup and drop-off across our local service area.</p>
+        </div>
+        <ul class="cities">
+          <li>Rancho Cordova</li><li>Gold River</li><li>Mather</li><li>Sacramento</li><li>Folsom</li><li>Citrus Heights</li><li>Fair Oaks</li><li>Carmichael</li><li>Elk Grove</li><li>El Dorado Hills</li>
+        </ul>
+        <p style="margin:18px 0 0"><a class="btn dark" href="https://www.google.com/maps/dir/?api=1&amp;destination=11432+Elks+Cir+Ste+B+Rancho+Cordova+CA+95742">Get directions</a></p>
+      </div>
+      <div class="map"><iframe title="Map to MPB at 11432 Elks Cir, Rancho Cordova" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=11432%20Elks%20Cir%20Ste%20B%2C%20Rancho%20Cordova%2C%20CA%2095742&amp;z=13&amp;output=embed"></iframe></div>
+    </div>
+  </section>
+
   <section id="faq">
     <div class="wrap">
       <div class="head"><div class="eyebrow">Questions</div><h2>Fleet FAQ</h2></div>
@@ -269,6 +319,49 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <details><summary>We already have a shop. Why switch?</summary><p>You don't have to switch everything. Many fleets use us for overflow, body work, or when their main shop is backed up. The free inspection is a no-risk way to see how we work.</p></details>
         <details><summary>What if a vehicle breaks down after hours?</summary><p>Use our after-hours key drop and we'll start first thing. Emergency and after-hours towing is available and billed separately.</p></details>
       </div>
+    </div>
+  </section>
+
+  <section id="request" class="request">
+    <div class="wrap">
+      <div>
+        <div class="head" style="margin-bottom:0">
+          <div class="eyebrow">Free fleet inspection</div>
+          <h2>Request your inspection</h2>
+          <p>Tell us about your fleet and we'll call you within one business day to set a time. No obligation.</p>
+        </div>
+        <ul>
+          <li>Every vehicle inspected, no limit</li>
+          <li>A written report on each vehicle</li>
+          <li>Free diagnostics included</li>
+          <li>We can come pick the vehicles up</li>
+        </ul>
+        <p style="margin:22px 0 0;color:var(--muted)">Rather talk? Call or text <a href="tel:+19165331695"><b>(916) 533-1695</b></a>.</p>
+      </div>
+      <form class="card" action="https://formsubmit.co/mpbfleet@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New fleet inspection request · mpbfleet.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://mpbfleet.com/thanks.html">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="full">Business name<input name="Business" required autocomplete="organization"></label>
+        <label>Your name<input name="Name" required autocomplete="name"></label>
+        <label>Phone<input name="Phone" type="tel" required autocomplete="tel" inputmode="tel"></label>
+        <label class="full">Email<input name="email" type="email" autocomplete="email"></label>
+        <label>How many vehicles?
+          <select name="Fleet size" required>
+            <option value="">Choose</option><option>1–2</option><option>3–5</option><option>6–10</option><option>11–25</option><option>26+</option>
+          </select>
+        </label>
+        <label>Best time to reach you
+          <select name="Best time">
+            <option>Any time</option><option>Morning</option><option>Afternoon</option>
+          </select>
+        </label>
+        <label class="full">Anything we should know? <small>Vehicle types, current issues, a vehicle you're thinking of buying</small><textarea name="Notes"></textarea></label>
+        <div class="full"><button class="btn red" type="submit">Request my free inspection</button></div>
+        <p class="note full">Goes straight to our fleet desk. We don't share your information.</p>
+      </form>
     </div>
   </section>
 
@@ -284,7 +377,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <dt>Address</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=11432+Elks+Cir+Ste+B+Rancho+Cordova+CA+95742">11432 Elks Cir, Ste B<br>Rancho Cordova, CA 95742</a></dd>
         <dt>Hours</dt><dd class="hours">Mon–Sat 9 AM–6 PM<br>Sunday closed<br>After-hours key drop available</dd>
         <dt>Email</dt><dd><a href="mailto:mpbfleet@gmail.com">mpbfleet@gmail.com</a></dd>
-        <dt>Website</dt><dd><a href="https://mpbautorepair.com">mpbautorepair.com</a></dd>
+        <dt>Main shop</dt><dd><a href="https://mpbautorepair.com">mpbautorepair.com</a></dd>
         <dt>Licensed</dt><dd>Bureau of Automotive Repair ARD 308450</dd>
       </dl>
     </div>
